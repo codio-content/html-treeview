@@ -8,13 +8,13 @@ In order to use this tool you have to view the `tree.html` page in a web browser
 
 You have to at least give it one hash argument `#url=` like this :
 
-`tree.html#url=some_file.html'
+`tree.html#url=some_file.html`
 
 Otherwise it doesn't know the structure of which document to display.
 
 If some_file.html has this content :
 
-'''html
+```html
 <html>
 <head>
     <title></title>
@@ -45,7 +45,7 @@ If some_file.html has this content :
 
 </body>
 </html>
-'''
+```
 
 The result will look like this :
 
