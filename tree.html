@@ -148,8 +148,14 @@
             }
             
             if (autosubmit) {
+                
                 $("#collapse_params").collapse('hide');
+                
                 submit_form();
+                
+                $('html, body').animate({
+                    scrollTop: $("div.tree").offset().top
+                }, 2000);
                 
             }
             
