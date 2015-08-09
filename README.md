@@ -4,13 +4,17 @@ A little tool to visualize the structure of an html document as a tree.
 
 ## Usage :
 
-In order to use this tool you have to view the `tree.html` page in a web browser.
+Either you can open `tree.html` and use the tool by filling the boxes text fields.
 
-You have to at least give it one hash argument `#url=` like this :
+Enter a url, a jquery selector and click.Enter
+
+## Url parameters
+
+You can give a hash argument `#url=` like this :
 
 `tree.html#url=some_file.html`
 
-Otherwise it doesn't know the structure of which document to display.
+And it will preload the tool so you don't have to do it manually.
 
 If some_file.html has this content :
 
@@ -66,4 +70,5 @@ Here is an example result, with the following query :
 
 ### TO DO :
 
+- Instead of just loading the html raw via url-fetcher when it's external, might want to use something like phantomjs (otherwise the displayed html structure doesn't take into account any changes made by js when the page loads, it will just display the raw structure of the page as returned by server)
 - Add possibility to focus only on one part of the html (like from the body or lower..)

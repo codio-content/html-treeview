@@ -1,141 +1,170 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>tree</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        .tree ul {
-            padding-top: 20px;
-            position: relative;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-        }
-        .tree li {
-            float: left;
-            text-align: center;
-            list-style-type: none;
-            position: relative;
-            padding: 20px 5px 0 5px;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-        }
-        .tree li::before, .tree li::after {
-            content:'';
-            position: absolute;
-            top: 0;
-            right: 50%;
-            border-top: 1px solid #ccc;
-            width: 50%;
-            height: 20px;
-        }
-        .tree li::after {
-            right: auto;
-            left: 50%;
-            border-left: 1px solid #ccc;
-        }
-        .tree li:only-child::after, .tree li:only-child::before {
-            display: none;
-        }
-        .tree li:only-child {
-            padding-top: 0;
-        }
-        .tree li:first-child::before, .tree li:last-child::after {
-            border: 0 none;
-        }
-        .tree li:last-child::before {
-            border-right: 1px solid #ccc;
-            border-radius: 0 5px 0 0;
-            -webkit-border-radius: 0 5px 0 0;
-            -moz-border-radius: 0 5px 0 0;
-        }
-        .tree li:first-child::after {
-            border-radius: 5px 0 0 0;
-            -webkit-border-radius: 5px 0 0 0;
-            -moz-border-radius: 5px 0 0 0;
-        }
-        .tree ul ul::before {
-            content:'';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            border-left: 1px solid #ccc;
-            width: 0;
-            height: 20px;
-        }
-        .tree li a {
-            border: 1px solid #ccc;
-            padding: 5px 10px;
-            text-decoration: none;
-            color: #ccc;
-            font-family: arial, verdana, tahoma;
-            font-size: 11px;
-            display: inline-block;
-            border-radius: 5px;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-        }
-        .tree li a:hover, .tree li a:hover+ul li a {
-            background: #c8e4f8;
-            color: #000;
-            border: 1px solid #94a0b4;
-        }
-        .tree li a:hover+ul li::after, .tree li a:hover+ul li::before, .tree li a:hover+ul::before, .tree li a:hover+ul ul::before {
-            border-color: #94a0b4;
-        }
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/tree.css">
+
+    
+    
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="messages">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <h3> HTML Tree view </h3>
+            </div>
+            
+            <div class="panel-group col-sm-10" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-heading" id="collapse_heading"> <a role="button" id="collapse_button" data-toggle="collapse" data-parent="#accordion" href="#collapse_params"> <span class="closed glyphicon glyphicon-menu-down"> </span> <span class="open glyphicon glyphicon-menu-up"> </span> Parameters  </a> </div>
+                  <div id="collapse_params" class="panel-collapse collapse in">
+                      <div class="panel-body">
+                         <div class="form">
+                              <form id="tree-form">
+                                  <div class="form-group col-md-6">
+                                      <label class="sr-only" for="urlInput">URL to display</label>
+                                      <input type="text" class="form-control" id="urlInput" placeholder="URL to display">
+                                  </div>
+                                  <div class="form-group col-md-2">
+                                      <label class="sr-only" for="queryInput">Query Selector</label>
+                                      <input type="text" class="form-control" id="queryInput" placeholder="Query Selector">
+                                  </div>
+                                  <div class="checkbox col-md-2">
+                                      <label>
+                                          <input type="checkbox" id="onlyBody"> Only body ?
+                                      </label>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <button type="submit" id="tree-form-submit" class="btn btn-primary btn-block">Show tree</button>
+                                  </div>
+                              </form>
+                              <div style="clear:both;"> </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="panel panel-default"> 
+                <div class="panel-heading"> Tree view  </div>
+                <div class="panel-body">
+                    <div class="tree">
         
-        .tree li a.selected {
-            background: #8fef99;
-            color: #000;
-            border: 1px solid #94a0b4;
-        }
-        
-    </style>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
-    <script src="tree.js" type="text/javascript"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="js/lib/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="js/lib/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/tree.js" type="text/javascript"></script>
     <script type="text/javascript">
         
+        var error_message = function(message) {
+            var mess = '<div class="alert alert-danger" role="alert">'+message+'</div>'
+            $("div.messages").html(mess);
+        };
+        
+        var submit_form = function(event) {
+            var url = $('#urlInput').val();
+            var querySelector =  $('#queryInput').val();
+            var onlyBody = $('#onlyBody').is(':checked')
+
+            if (url && url.length > 3) {
+                
+                var r = new RegExp('^(?:[a-z]+:)?//', 'i');
+                
+                if (r.test(url)) { //if absolute url use the fetcher (otherwise anything out of domain is blocked by browser security) 
+                    var proxyhost = "https://local-balance.codio.io:9500/?url=";
+                    var quer = proxyhost + url;
+                } else {
+                    var quer = url;
+                }
+                
+                
+                
+                $.get(quer , function( data ) {
+
+                    if (data && data.length > 0) {
+                        if (querySelector && querySelector.length > 0){ 
+                            treeview("div.tree", data, querySelector, onlyBody);
+                        } else {
+                            treeview("div.tree", data, undefined, onlyBody);
+                        }
+
+                    } else {
+                        error_message("The url provided didn't return any data");
+                    }
+
+
+                }).fail(function() {
+                    error_message("Couldn't load the content of :"+url);
+                });
+
+            } else {
+                error_message("You didn't provide a correct url");
+            }
+
+            if (event) {
+                event.preventDefault(); 
+            }
+            
+        }
         
         $(document).ready(function(){
+            
+            var autosubmit = false;
             
             if(window.location.hash) {
                 
                 var hashes = parseHashBangArgs();
                 
                 if (hashes.url) {
-                    $.get( hashes.url , function( data ) {
-                        
-                        if (hashes.querySelector) {
-                            treeview("div.tree", data, decodeURIComponent(hashes.querySelector));
-                            
-                        } else {
-                            treeview("div.tree", data, undefined);
-                        }
-                  
-                    });
-                
-                } else {
-                  alert("You should put the url of the page to visualize in #hash")
+                    $("#urlInput").val(hashes.url);
+                    autosubmit=true;
                 }
-              
-             } else {
-               alert("You should put the url of the page to visualize in #hash")
-             }
+                
+                if (hashes.querySelector) {
+                    $("#queryInput").val(decodeURIComponent(hashes.querySelector));
+                }
+                
+                if (hashes.onlyBody) {
+                    
+                }
+                
+            }
+            
+            if (autosubmit) {
+                $("#collapse_params").collapse('hide');
+                submit_form();
+                
+            }
+            
+            $("#tree-form").submit(submit_form);
+            
+            
+            
+            
+            
                         
         })
         
     </script>
-</head>
-<body>
-    <div class="tree">
-        
-    </div>
 </body>
 </html>

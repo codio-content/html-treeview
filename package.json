@@ -1,0 +1,10 @@
+/**
+* Created with Webdev Course Tools.
+* User: mathvdh
+* Date: 2015-08-09
+* Time: 09:41 PM
+* To change this template use Tools | Templates.
+*/
+define(function() {
+return {};
+});

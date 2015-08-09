@@ -84,6 +84,6 @@ function treeview(selector, content, querySelector) {
     
     parseChildren(doc.documentElement, undefined);
     
-    $(selector).html("<ul>"+tree_content+"</ul>");
+    $(selector).html("<ul>"+tree_content+"</ul> ");
 
 }
