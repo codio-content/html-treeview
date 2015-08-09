@@ -141,8 +141,13 @@
                     $("#queryInput").val(decodeURIComponent(hashes.querySelector));
                 }
                 
-                if (hashes.onlyBody) {
-                    
+                if (hashes.onlyBody == "1" || hashes.onlyBody == "true") {
+                    $('#onlyBody').prop('checked', true);
+                }
+                
+                if (hashes.noUrl == "1" || hashes.noUrl == "true") {
+                    $("#urlInput").parent().hide();
+                    $("#queryInput").parent().removeClass("col-md-2").addClass("col-md-8");
                 }
                 
             }

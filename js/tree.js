@@ -17,7 +17,7 @@ function parseHashBangArgs(aURL) {
     return vars;
 }
 
-function treeview(selector, content, querySelector) {
+function treeview(selector, content, querySelector, onlyBody) {
     
     var parser = new DOMParser();
     var doc = parser.parseFromString(content, "text/html");
@@ -81,8 +81,13 @@ function treeview(selector, content, querySelector) {
         
     }
     
+    if (onlyBody) {
+        parseChildren(doc.body, undefined);
+    } else {
+        parseChildren(doc.documentElement, undefined);
+    }
     
-    parseChildren(doc.documentElement, undefined);
+    
     
     $(selector).html("<ul>"+tree_content+"</ul> ");
 
